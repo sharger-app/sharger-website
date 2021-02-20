@@ -4,7 +4,7 @@ import { formatRelative } from "date-fns";
 import MapStyle from './MapStyle';
 import index from '../index.css';
 
-import usePlaceAutocomplete, { getGeocode, getLating, } from "use-places-autocomplete";
+import usePlaceAutocomplete, { getGeocode, getLatLng, } from "use-places-autocomplete";
 import {
     Combobox,
     ComboboxInput,
@@ -16,8 +16,8 @@ import {
 import "@reach/combobox/styles.css"; const libraries = ["places"];
 
 const containerStyle = {
-    width: "80vw",
-    height: "51vw",
+    width: "100%",
+    height: "100vh",
 };
 
 const center = {
@@ -55,15 +55,20 @@ function Map() {
         mapRef.current = map;
     }, []);
 
+    const panningTo = React.useCallback(({ lat, lng }) => {
+        mapRef.current.panningTo({ lat, lng });
+        mapRef.current.setZoom(20);
+    }, []);
+
     if (loadError) return "Err loading maps";
     if (!isLoaded) return "Loading Maps";
 
     return isLoaded ? (
         <>
-            <div>
+            {/* <div>
                 <h1>Sharger</h1>
-            </div>
-            <Search />
+            </div> */}
+            <Search panningTo={panningTo}/>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 zoom={13}
@@ -107,7 +112,7 @@ function Map() {
     ) : <></>
 }
 
-function Search() {
+function Search({ panningTo }) {
     const { ready, value, suggestions: { status, data }, setValue, clearSuggestions } = usePlaceAutocomplete({
         requestOptions: {
             location: {
@@ -117,30 +122,40 @@ function Search() {
             radius: 200 * 1000,
         },
     });
-return (
-    <div className="SearchEngine">
-        <Combobox 
-            onSelect={(address) => {
-                console.log(address);
-            }}
-        >
-            <ComboboxInput 
-                value={value} 
-                onChange={(e) => {
-                    setValue(e.target.value);
-                }} 
-                disabled={!ready}
-                placeholder="Enter an address"
-            />
-            <ComboboxPopover>
-                {status === "OK" && data.map(({ id, description }) => ( 
-                    <ComboboxOption key={id} value={description} />
-                ))}
-            </ComboboxPopover>
-        </Combobox>
-    </div>
 
-);
+    return (
+        <div className="SearchEngine">
+            <Combobox 
+                onSelect={async (address) => {
+                    try {
+                        const results = await getGeocode({address});
+                        const { lat, lng } = await getLatLng(results[0]);
+                        // console.log(lat, lng);
+                        panningTo({ lat, lng });
+
+                    } catch (error) {
+                        console.log("ERR")
+                    }
+                    // console.log(address);
+                }}
+            >
+                <ComboboxInput 
+                    value={value} 
+                    onChange={(e) => {
+                        setValue(e.target.value);
+                    }} 
+                    disabled={!ready}
+                    placeholder="Find a Sharger"
+                />
+                <ComboboxPopover>
+                    {status === "OK" && data.map(({ id, description }) => ( 
+                        <ComboboxOption key={id} value={description} />
+                    ))}
+                </ComboboxPopover>
+            </Combobox>
+        </div>
+
+    );
 
 }
 
