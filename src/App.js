@@ -8,6 +8,9 @@ function App() {
     <Router>
       <div className="App">
           </div>
+          {/* <Route path='/' exact>
+            <Home />
+          </Route> */}
           <Route path='/' exact>
             <Map />
           </Route>
