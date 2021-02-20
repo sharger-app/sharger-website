@@ -7,20 +7,21 @@ h1{
     margin: 0;
     padding: 0;
 }
-.search{
+.SearchEngine{
     position: absolute;
     top: 1rem;
-    left: 50%;
+    left: 40%;
     transform: translateX(-50%);
     width: 100%;
-    width: 200px;
+    width: 300px;
     z-index: 10;
 
 }
-.search{
-    width: 200px;
+.SearchEngine input{
+    border: 3px solid rgb(76, 107, 136);
+    width: 300px;
     padding: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 
 }
 /* .InfoWindow {
