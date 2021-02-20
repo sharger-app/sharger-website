@@ -13,16 +13,16 @@ function Footer(props) {
           <Col xs lg="2">
             <h5>About</h5>
             <ul className="list-unstyled text-small">
-              <li><a className="text-muted" herf="#">The Company</a></li>
-              <li><a className="text-muted" herf="#">Products</a></li>
-              <li><a className="text-muted" herf="#">Our Vision</a></li>
+              <li><a className="text-muted" href="#">The Company</a></li>
+              <li><a className="text-muted" href="#">Products</a></li>
+              <li><a className="text-muted" href="#">Our Vision</a></li>
             </ul>
           </Col>
           <Col xs lg="2">
             <h5>The Team</h5>
             <ul className="list-unstyled text-small">
-              <li><a className="text-muted" herf="#">The People</a></li>
-              <li><a className="text-muted" herf="#">Career</a></li>
+              <li><a className="text-muted" href="#">The People</a></li>
+              <li><a className="text-muted" href="#">Career</a></li>
             </ul>
           </Col>
           <Col xs lg="2">
