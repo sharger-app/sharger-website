@@ -76,12 +76,23 @@ function Map() {
                 orgin: new window.google.maps.Point(0, 0), 
                 anchor: new window.google.maps.Point(20, 30),
             }}
+            // show info box whenever the marker is clicked
             onClick={() => {
-                setSelecters(markers);
+                setSelecters(marker);
             }}
         />
         ))}
-
+          {selecters ? (
+          <InfoWindow
+            position={{lat: selecters.lat, lng: selecters.lng}}
+            onCloseClick={() => {
+                // close info box whenever the marker is clicked
+                setSelecters(null);
+            }}>
+              <div>
+                  <h2>Review</h2>
+              </div>
+          </InfoWindow>) : null}
       </GoogleMap>
     </>
   ) : <></>
