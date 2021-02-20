@@ -1,25 +1,82 @@
 import Navigation from "./Navigagion";
 import Footer from "./Footer";
-import { Button, Container, Jumbotron } from "react-bootstrap";
+import { Button, Container, Jumbotron, Row, Card, Form, Col } from "react-bootstrap";
 import { faSearchLocation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from "react";
 
 function Home() {
+
+  const [formHousing, setFormHousing] = useState("0");
+
   return (
     <div class="Home">
       <Navigation/>
-      <Jumbotron fluid style={{backgroundColor: "white"}}>
-        <Container>
-          <br/><br/><br/><br/>
-          <h1 class="display-4">Find your nearest Sharger</h1><br/>
-          <p class="lead">Join thousands of EV owners in North America.</p>
-          <br/><br/>
-          <Button href="#" variant="outline-primary" size="lg">
-            <FontAwesomeIcon icon={faSearchLocation} /> Find a Sharger
-          </Button>
-          <br/><br/><br/><br/>
-        </Container>
-      </Jumbotron>
+
+      <Container fluid style={{backgroundImage: "url(greencity.jpg)", backgroundPosition: "center", paddingTop: "10%", paddingBottom: "10%"}}>
+        <Row className="justify-content-md-center">
+          <h1 className="display-4 text-white">Find your nearest Sharger</h1><br/>
+          <br/>
+        </Row>
+        <Row className="justify-content-md-center">
+          <p className="lead text-white">Join thousands of EV owners in North America.</p>
+          <br/>
+        </Row>
+        <br/><br/>
+        <Row className="justify-content-md-center">
+          <Card style={{width:"30em", padding: "3% 2%"}}>
+            <Card.Title className="text-center">Find a Sharger</Card.Title>
+            <Card.Text className="text-muted text-center">Just takes a few simple steps</Card.Text>
+            <hr/>
+            <Form>
+              <Form.Group controlId="formLocation">
+                <Form.Label>Location</Form.Label>
+                <Form.Control type="text" placeholder="Enter your location" />
+              </Form.Group>
+
+
+              <Row>
+                <Col>
+                  <Form.Group controlId="formChargerType">
+                    <Form.Label>Plug Type</Form.Label>
+                    <Form.Control as="select" custom>
+                      <option>type a</option>
+                      <option>type b</option>
+                      <option>type c</option>
+                      <option>type d</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId="formChargerWattage">
+                    <Form.Label>Charger Wattage</Form.Label>
+                    <Form.Control as="select" custom>
+                      <option>wattage range a</option>
+                      <option>wattage range b</option>
+                      <option>wattage range c</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+
+              </Row>
+              
+
+              <Form.Group controlId="formHousing">
+                <Form.Label>With Housing?</Form.Label>
+                <div key={`inline-radio`} className="mb-3">
+                  <Form.Check inline value="1" label="Yes" type="radio" onChange={e => setFormHousing(e.target.value)} checked={formHousing==="1"}/>
+                  <Form.Check inline value="0" label="No" type="radio" onChange={e => setFormHousing(e.target.value)} checked={formHousing==="0"}/>
+                </div>
+              </Form.Group>
+              <br/>
+              <br/>
+              <Form.Group>
+                <Button variant="light" type="submit" size="lg" block><FontAwesomeIcon icon={faSearchLocation}/> Find a Sharger</Button>
+              </Form.Group>
+            </Form>
+          </Card>
+        </Row>
+      </Container>
 
       <Jumbotron fluid>
         <Container>
