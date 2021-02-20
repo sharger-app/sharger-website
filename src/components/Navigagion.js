@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Navigation(props) {
   return (
     <Navbar bg="white">
-      <Navbar.Brand href="/home">Sharger</Navbar.Brand>
+      <Navbar.Brand href="/">Sharger</Navbar.Brand>
       <Navbar.Collapse id="navText" className="justify-content-center">
         <Nav
           activeKey={props.activeKey}
