@@ -4,7 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 function Footer(props) {
   return (
     <footer>
-      <Container fluid>
+      <Container className="bg-light" fluid>
+        <br/>
         <Row className="justify-content-md-center">
           <Col xs lg="2">
             <h5>Sharger</h5>

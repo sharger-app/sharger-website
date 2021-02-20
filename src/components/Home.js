@@ -13,7 +13,7 @@ function Home() {
     <div class="Home">
       <Navigation/>
 
-      <Container fluid style={{backgroundImage: "url(greencity.jpg)", backgroundPosition: "center", paddingTop: "10%", paddingBottom: "10%"}}>
+      <Container fluid style={{margin: "0", backgroundImage: "url(greencity.jpg)", backgroundPosition: "center", paddingTop: "10%", paddingBottom: "10%"}}>
         <Row className="justify-content-md-center">
           <h1 className="display-4 text-white">Find your nearest Sharger</h1><br/>
           <br/>
@@ -33,7 +33,6 @@ function Home() {
                 <Form.Label>Location</Form.Label>
                 <Form.Control type="text" placeholder="Enter your location" />
               </Form.Group>
-
 
               <Row>
                 <Col>
@@ -78,7 +77,7 @@ function Home() {
         </Row>
       </Container>
 
-      <Jumbotron fluid>
+      <Jumbotron style={{margin: "0"}} fluid>
         <Container>
           <br/><br/><br/><br/>
           <h1 className="display-4 text-right">Have a vacant EV charging spot?</h1><br/>
@@ -92,7 +91,7 @@ function Home() {
         </Container>
       </Jumbotron>
 
-      <Jumbotron fluid style={{backgroundColor: "white"}}>
+      <Jumbotron style={{margin: "0"}} fluid style={{backgroundColor: "white"}}>
         <Container>
           <br/><br/><br/><br/>
           <h1 class="display-4">Make the switch</h1><br/>
@@ -106,7 +105,7 @@ function Home() {
       </Jumbotron>
 
 
-      <Jumbotron fluid>
+      <Jumbotron style={{margin: "0"}} fluid>
         <Container>
           <br/><br/><br/><br/>
           <h1 className="display-4 text-right">Thinking about collaborating with us?</h1><br/>
