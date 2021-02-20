@@ -1,7 +1,18 @@
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Map from './Map';
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Router>
+      <div className="App">
+          </div>
+          <Route path='/' exact>
+            <Map />
+          </Route>
+    </Router>
+    
   );
 }
 
