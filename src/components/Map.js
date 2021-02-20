@@ -19,6 +19,7 @@ const options = {
 
 function Map() {
     const { isLoaded, loadErr } = useLoadScript({
+        // Key: 'AIzaSyAD5HWvSSyyhaTKklV9V2beb5xgjRJEgLQ',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY, 
         libraries,
     });
