@@ -4,5 +4,11 @@
 
 $primary: #27272794;
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";
