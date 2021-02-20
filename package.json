@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@reach/combobox": "^0.13.0",
     "@react-google-maps/api": "^2.1.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -20,6 +21,7 @@
     "react-geocode": "^0.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "use-places-autocomplete": "^1.9.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

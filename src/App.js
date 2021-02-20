@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Map from './components/Map';
+
 import Home from './components/Home';
 
 function App() {
