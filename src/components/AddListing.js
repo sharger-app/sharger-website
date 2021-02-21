@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import {
+  useHistory,
+} from "react-router-dom";
 
 import Navigation from "./Navigagion";
 import Footer from "./Footer";
+import { apiDomain } from "../index.js";
+import axios from "axios";
+
 
 function AddListing(props) {
 
+  let history = useHistory();
   const [formData, setFormData] = useState({formHousing: "0"});
 
   const handleChange = (e) => {
@@ -15,8 +22,24 @@ function AddListing(props) {
     }));
   };
 
-  const handleSubmit = (e) => {
-    console.log(formData);
+  const handleSubmit = async (e) => {
+    const result = await axios({
+      method: "post",
+      url: `${apiDomain}/chargers/add`,
+      data: {
+        "owner": "60320dc3eba044ae0a95d131",
+        name: formData.formName,
+        wattage: formData.formChargerWattage,
+        plug: formData.formChargerType,
+        address: formData.formAddress,
+        housing: formData.formHousing,
+        speed: "Rapid",
+        price: formData.formRate,
+        image: formData.formUrl,
+      },
+    });
+
+    history.replace(`/listingtest?id=${result.data['_id']}`);
   };
 
   return (
@@ -27,6 +50,11 @@ function AddListing(props) {
         <h3>Host a Sharger</h3>
         <br/><br/>
         <Form>
+          <Form.Group controlId="formName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" placeholder="Your Charger Name" onChange={handleChange}/>
+          </Form.Group>
+
           <Form.Group controlId="formAddress">
             <Form.Label>Address</Form.Label>
             <Form.Control type="text" placeholder="Your Charger Address" onChange={handleChange}/>
@@ -81,7 +109,7 @@ function AddListing(props) {
         </Form>
       </Container>
 
-      <Footer style={{position: "absolute", bottom: "0", width: "100%"}}/>
+      <Footer/>
     </div>
     
   );

@@ -15,6 +15,7 @@ import Navigation from './Navigagion';
 import Footer from './Footer';
 import index from '../index.css';
 import ListingCard from './ListingCard';
+import { apiDomain } from "../index.js";
 
 
 const libraries = ["places"];

@@ -1,19 +1,31 @@
 import { Container, Row, Image, Col, Form, Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import { faMapMarkerAlt, faUserCircle, faBolt, faPlug, faChargingStation, faBed } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import moment from "moment";
+import {useEffect} from "react";
+import axios from "axios";
+
+import { apiDomain } from "../index.js";
 
 import Navigation from "./Navigagion";
 import Footer from "./Footer";
 import ListingCard from "./ListingCard";
 import { useState } from "react";
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function Listing(props) {
   // props: owner, speed, plug, wattage, adress, sessions, housing, review, image
 
-  const { owner, name, speed, plug, wattage, address, sessions, housing, review, image, rate } = props;
+  const query = useQuery();
+
+  const [data, setData] = useState({owner: {first_name: "", last_name: ""}, sessions: []});
+  const { owner, name, speed, plug, wattage, address, sessions, housing, review, image, price } = data;
 
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
@@ -22,19 +34,59 @@ function Listing(props) {
   let timeWarning;
   let time_difference = (endTime.getTime() - startTime.getTime()) / (1000 * 60);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios({
+        method: "post",
+        url: `${apiDomain}/chargers/getcharger`,
+        data: {
+          "charger": query.get("id"),
+        },
+      });
+
+      const data = result.data;
+      
+      data.owner = await axios({
+        method: "post",
+        url: `${apiDomain}/chargers/getowner`,
+        data: {
+          "owner": data.owner,
+        },
+      });
+      data.owner = data.owner.data[0];
+
+      data.sessions = await Promise.all(data.sessions.map(async (x) => {
+        return axios({
+          method: "post",
+          url: `${apiDomain}/chargers/getsession`,
+          data: {
+            "sess": x,
+          },
+        });
+      }));
+
+      data.sessions = data.sessions.map(x => x.data);
+
+      return data;
+    }
+
+      
+    fetchData().then(d => setData(d));
+  }, []);
+
   if (time_difference <= 0) {
     timeWarning = (<p class="text-danger">End Time must be at least one minute later than beggining time</p>);
   } else if (sessions.every(x => {
     return (
-      (x.start.getTime() - endTime.getTime()) > 0 ||
-      (x.end.getTime() - startTime.getTime()) < 0
+      ((new Date(x.start)).getTime() - endTime.getTime()) > 0 ||
+      ((new Date(x.end)).getTime() - startTime.getTime()) < 0
     );
   })) {
-    total = (rate * time_difference).toFixed(2);
+    total = (price * time_difference).toFixed(2);
 
     timeWarning = ([
       <p class="text-success">Time slot avaliable</p>,
-      <p>{`${time_difference} minutes x $${rate} = $${total}`}</p>,
+      <p>{`${time_difference} minutes x $${price} = $${total}`}</p>,
       <br/>,
       <Button variant="light" href="#">Book Session</Button>,
     ]);
@@ -43,7 +95,6 @@ function Listing(props) {
   }
 
   return (
-    
     <div className="viewport">
       <Navigation user={props.user} login={props.login} logout={props.logout} />
       <Container style={{padding: "5% 0"}}>
@@ -57,7 +108,7 @@ function Listing(props) {
             </Row>
             <br/>
 
-            <p>{`Rate: $${rate}/minute`}</p>
+            <p>{`Price: $${price}/minute`}</p>
 
             <ul className="fa-ul text-muted" style={{listStyle: "none"}}>
               <li><span className="fa-li"><FontAwesomeIcon icon={faMapMarkerAlt}/></span>&nbsp;{address}</li>
@@ -114,9 +165,9 @@ function Listing(props) {
         <br/>
 
         <Row className="justify-content-center">
-          <Col><ListingCard { ...props } /></Col>
-          <Col><ListingCard { ...props } /></Col>
-          <Col><ListingCard { ...props } /></Col>
+          <Col><ListingCard { ...data } /></Col>
+          <Col><ListingCard { ...data } /></Col>
+          <Col><ListingCard { ...data } /></Col>
         </Row>
       </Container>
 

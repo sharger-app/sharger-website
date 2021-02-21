@@ -4,6 +4,8 @@ import { Button, Container, Jumbotron, Row, Card, Form, Col } from "react-bootst
 import { faSearchLocation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
+import { apiDomain } from "../index.js";
+
 
 function Home(props) {
 
@@ -86,7 +88,7 @@ function Home(props) {
               <br/>
               <br/>
               <Form.Group>
-                <Button variant="light" size="lg" block onClick={handleSubmit}><FontAwesomeIcon icon={faSearchLocation}/> Find a Sharger</Button>
+                <Button variant="light" size="lg" block href="/map"><FontAwesomeIcon icon={faSearchLocation}/> Find a Sharger</Button>
               </Form.Group>
             </Form>
           </Card>

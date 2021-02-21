@@ -2,6 +2,7 @@ import { Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
 import { faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
 
 function Navigation(props) {
@@ -38,13 +39,13 @@ function Navigation(props) {
           activeKey={props.activeKey}
         >
           <NavItem>
-            <NavLink href="#">Shargers</NavLink>
+            <NavLink href="/listingtest?id=60320ee671eda01600c4baa2">Shargers</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Host a Sharger</NavLink>
+            <NavLink href="/listingaddtest">Host a Sharger</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">About</NavLink>
+            <NavLink href="/map">Shargers Heatmap</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="#">Contact</NavLink>

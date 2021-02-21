@@ -1,4 +1,5 @@
 import { Row, Card, Col, Container } from "react-bootstrap";
+import { apiDomain } from "../index.js";
 
 import { faUserCircle, faBolt, faPlug, faChargingStation, faBed } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function ListingCard(props) {
   // props: owner, speed, plug, wattage, adress, sessions, housing, review, image
 
-  const { owner, name, speed, plug, wattage, address, sessions, housing, review, image, rate } = props;
+  const { owner, name, speed, plug, wattage, address, sessions, housing, review, image, price } = props;
 
   return (
     <Card style={{width: "20em"}} className="text-left" as="button">
@@ -14,7 +15,7 @@ function ListingCard(props) {
       <Container style={{padding: "8% 8%"}}>
         <Card.Title>{name}</Card.Title>
         <hr/>
-        <Card.Text className="text-muted"><small>{`$${rate}/minute`}</small></Card.Text>
+        <Card.Text className="text-muted"><small>{`$${price}/minute`}</small></Card.Text>
         <Card.Text>{address}</Card.Text>
         <Row>
           <Col>
