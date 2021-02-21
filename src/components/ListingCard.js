@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function ListingCard(props) {
   // props: owner, speed, plug, wattage, adress, sessions, housing, review, image
 
-  const { owner, name, speed, plug, wattage, address, sessions, housing, review, image } = props;
+  const { owner, name, speed, plug, wattage, address, sessions, housing, review, image, rate } = props;
 
   return (
     <Card style={{width: "20em"}} className="text-left" as="button">
@@ -14,6 +14,7 @@ function ListingCard(props) {
       <Container style={{padding: "8% 8%"}}>
         <Card.Title>{name}</Card.Title>
         <hr/>
+        <Card.Text className="text-muted"><small>{`$${rate}/minute`}</small></Card.Text>
         <Card.Text>{address}</Card.Text>
         <Row>
           <Col>
@@ -33,6 +34,7 @@ function ListingCard(props) {
         <Row>
           <Col xs lg="2" className="align-self-center"><FontAwesomeIcon icon={faUserCircle} size="2x"/></Col>
           <Col className="align-self-center"><Card.Text>{`${owner.first_name} ${owner.last_name[0]}.`}</Card.Text></Col>
+          <Col className="pull-right align-self-center text-success"><Card.Text>Avaliable</Card.Text></Col>
         </Row>
         
       </Container>

@@ -3,8 +3,8 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function Footer(props) {
   return (
-    <footer>
-      <Container className="bg-light" fluid>
+    <footer {...props} >
+      <Container className="bg-light alig" fluid>
         <br/>
         <Row className="justify-content-md-center">
           <Col xs lg="2">

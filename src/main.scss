@@ -10,5 +10,10 @@ img {
   height: auto;
 }
 
+.viewport {
+  position: relative;
+  min-height: 100vh;
+}
+
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";
