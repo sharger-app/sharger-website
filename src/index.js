@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './main.scss';
 
-const apiDomain = process.env.API_DOMAIN || "";
+const apiDomain = "https://whispering-citadel-85258.herokuapp.com";
 
 ReactDOM.render(
   <React.StrictMode>
