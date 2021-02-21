@@ -28,10 +28,15 @@
     padding-left: 20px;
     font-size: 1rem;
 }
-/* .InfoWindow {
+.InfoWindow {
     width: 100%;
-    max-width: 50px;
-} */
+    max-width: 25px;
+}
+.ListingCard {
+    width: 100%;
+    max-width: 25px;
+}
+
 @media screen and (max-width: 960px) {
     .Map{
         margin: 50px 10px 100px 10px;

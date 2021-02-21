@@ -1,7 +1,15 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 import Map from './components/Map';
+
+import Home from './components/Home';
+import Listing from './components/Listing';
 
 function App() {
   const testListingProps = {
@@ -92,7 +100,7 @@ function App() {
             <Home />
           </Route> */}
 
-          {/* <Route path='/listingprops' exact>
+          {/* <Route path='/listingtest' exact>
             <Listing { ...testListingProps}/>
           </Route>  */}
 
