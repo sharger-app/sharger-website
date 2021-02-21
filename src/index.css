@@ -7,13 +7,13 @@
     margin: 0;
     padding: 0;
 } */
-*{
-    margin: 0;
+.Map{
+    margin: 50px 30px 100px 30px;
     padding: 0;
 }
 .SearchEngine{
     position:absolute;
-    top: 1rem;
+    top: 8rem;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -25,9 +25,33 @@
     border: 3px solid rgb(76, 107, 136);
     width: 500px;
     padding: 0.5rem;
+    padding-left: 20px;
     font-size: 1rem;
 }
-/* .InfoWindow {
+.InfoWindow {
     width: 100%;
-    max-width: 50px;
-} */
+    max-width: 25px;
+}
+.ListingCard {
+    width: 100%;
+    max-width: 25px;
+}
+
+@media screen and (max-width: 960px) {
+    .Map{
+        margin: 50px 10px 100px 10px;
+    }
+
+    .SearchEngine{
+        top: 11rem;
+        left: 50%;
+        width: 400px;
+
+    }
+    .SearchEngine input{
+        border: 3px solid rgb(76, 107, 136);
+        width: 400px;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+}

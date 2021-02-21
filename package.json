@@ -21,9 +21,11 @@
     "react-datetime": "^3.0.4",
     "react-dom": "^17.0.1",
     "react-geocode": "^0.2.3",
+    "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "use-places-autocomplete": "^1.9.1",
+    "useref": "^1.4.3",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
