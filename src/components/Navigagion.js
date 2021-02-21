@@ -1,8 +1,35 @@
 import { Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
 import { faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function Navigation(props) {
+
+  let userBar;
+
+  if (!cookies.get("id")) {
+    userBar = [
+      (<NavItem>
+        <NavLink href="/signin"><FontAwesomeIcon icon={faSignInAlt} /> Sign In</NavLink>
+      </NavItem>), 
+      (<NavItem>
+        <faUser/>
+        <NavLink href="#"><FontAwesomeIcon icon={faUser} /> Register</NavLink>
+      </NavItem>)
+    ];
+  } else {
+    userBar = [
+      (<NavItem>
+        <NavLink href="#"><FontAwesomeIcon icon={faUser} /> {`${cookies.get('first_name')}`}</NavLink>
+      </NavItem>), 
+      (<NavItem>
+        <faUser/>
+        <NavLink href="#" onClick={props.logout}>signout</NavLink>
+      </NavItem>)
+    ];
+  }
+
   return (
     <Navbar bg="white">
       <Navbar.Brand href="/">Sharger</Navbar.Brand>
@@ -28,13 +55,7 @@ function Navigation(props) {
         activeKey={props.activeKey}
         className="justify-content-end"
       >
-        <NavItem>
-          <NavLink href="#"><FontAwesomeIcon icon={faSignInAlt} /> Sign In</NavLink>
-        </NavItem>
-        <NavItem>
-          <faUser/>
-          <NavLink href="#"><FontAwesomeIcon icon={faUser} /> Login</NavLink>
-        </NavItem>
+        {userBar}
       </Nav>
     </Navbar>
   );
